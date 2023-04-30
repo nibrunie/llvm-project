@@ -176,3 +176,7 @@ let Predicates = [HasStdExtZvksh], RVVConstraint = NoConstraint in {
   def VSM3C_VI  : PALUVINoVm<0b101011, "vsm3c.vi", uimm5>;
   def VSM3ME_VV : PALUVVNoVm<0b100000, OPMVV, "vsm3me.vv">;
 } // Predicates = [HasStdExtZvksh]
+
+let Predicates = [HasStdExtZvknf], RVVConstraint = NoConstraint in {
+  defm VAESE128  : VAES_MV_V_S<0b101000, 0b101001, 0b01000, OPMVV, "vaese128">;
+} // Predicates = [HasStdExtZvknf]
