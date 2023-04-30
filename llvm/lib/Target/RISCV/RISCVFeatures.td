@@ -569,6 +569,13 @@ def FeatureStdExtZvkt
     : SubtargetFeature<"experimental-zvkt", "HasStdExtZvkt", "true",
                        "'Zvkt' (Vector Data-Independent Execution Latency)">;
 
+def FeatureStdExtZvknf
+    : SubtargetFeature<"experimental-zvknf", "HasStdExtZvknf", "true",
+                       "'Zvknf' (Vector AES Encryption & Decryption (All Rounds))">;
+def HasStdExtZvknf : Predicate<"Subtarget->hasStdExtZvknf()">,
+                                AssemblerPredicate<(all_of FeatureStdExtZvknf),
+                                "'Zvknf' (Vector AES Encryption & Decryption (All Rounds))">;
+
 def FeatureStdExtZicond
     : SubtargetFeature<"experimental-zicond", "HasStdExtZicond", "true",
                        "'Zicond' (Integer Conditional Operations)">;

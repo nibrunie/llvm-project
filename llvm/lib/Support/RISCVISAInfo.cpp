@@ -160,6 +160,8 @@ static const RISCVSupportedExtension SupportedExperimentalExtensions[] = {
     {"zvksg", RISCVExtensionVersion{0, 5}},
     {"zvksh", RISCVExtensionVersion{0, 5}},
     {"zvkt", RISCVExtensionVersion{0, 5}},
+    // vector crypto all rounds
+    {"zvknf", RISCVExtensionVersion{0, 1}},
 };
 
 static bool stripExperimentalPrefix(StringRef &Ext) {
@@ -894,7 +896,7 @@ Error RISCVISAInfo::checkDependency() {
         "'zvbc' requires 'v' or 'zve64*' extension to also be specified");
 
   if ((Exts.count("zvkg") || Exts.count("zvkned") || Exts.count("zvknha") ||
-       Exts.count("zvksed") || Exts.count("zvksh")) &&
+       Exts.count("zvksed") || Exts.count("zvksh") || Exts.count("zvknf")) &&
       !HasVector)
     return createStringError(
         errc::invalid_argument,
