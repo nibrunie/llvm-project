@@ -150,6 +150,7 @@ static const RISCVSupportedExtension SupportedExtensions[] = {
 
     {"zvbb", {1, 0}},
     {"zvbc", {1, 0}},
+    {"zvbc32e", {1, 0}},
 
     {"zve32f", {1, 0}},
     {"zve32x", {1, 0}},
@@ -175,6 +176,7 @@ static const RISCVSupportedExtension SupportedExtensions[] = {
     {"zvksg", {1, 0}},
     {"zvksh", {1, 0}},
     {"zvkt", {1, 0}},
+    {"zvkgs", {1, 0}},
 
     {"zvl1024b", {1, 0}},
     {"zvl128b", {1, 0}},
@@ -971,12 +973,22 @@ Error RISCVISAInfo::checkDependency() {
         errc::invalid_argument,
         "'zvbc' requires 'v' or 'zve64*' extension to also be specified");
 
+  if (Exts.count("zvbc32e") && !Exts.count("zve32x"))
+    return createStringError(
+        errc::invalid_argument,
+        "'zvbc32e' requires 'v' or 'zve32*' extension to also be specified");
+
   if ((Exts.count("zvkg") || Exts.count("zvkned") || Exts.count("zvknha") ||
        Exts.count("zvksed") || Exts.count("zvksh")) &&
       !HasVector)
     return createStringError(
         errc::invalid_argument,
         "'zvk*' requires 'v' or 'zve*' extension to also be specified");
+
+  if (Exts.count("zvkgs") && !Exts.count("zvkg"))
+    return createStringError(
+        errc::invalid_argument,
+        "'zvkgs' requires 'zvkg' extension to also be specified");
 
   if (Exts.count("zvknhb") && !Exts.count("zve64x"))
     return createStringError(
