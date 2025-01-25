@@ -136,6 +136,11 @@ let Predicates = [HasStdExtZvkg], RVVConstraint = NoConstraint in {
   def VGMUL_VV : PALUVs2NoVm<0b101000, 0b10001, OPMVV, "vgmul.vv">;
 } // Predicates = [HasStdExtZvkg]
 
+let Predicates = [HasStdExtZvkgs], RVVConstraint = NoConstraint in {
+  def VGHSH_VS : PALUVVNoVm<0b101111, OPMVV, "vghsh.vs">;
+  def VGMUL_VS : PALUVs2NoVm<0b111101, 0b10011, OPMVV, "vgmul.vs">;
+} // Predicates = [HasStdExtZvkgs]
+
 let Predicates = [HasStdExtZvknhaOrZvknhb], RVVConstraint = NoConstraint in {
   def VSHA2CH_VV : PALUVVNoVm<0b101110, OPMVV, "vsha2ch.vv">;
   def VSHA2CL_VV : PALUVVNoVm<0b101111, OPMVV, "vsha2cl.vv">;

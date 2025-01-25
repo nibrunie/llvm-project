@@ -1853,13 +1853,17 @@ let TargetPrefix = "riscv" in {
   defm vcpopv            : RISCVUnaryAA;
   defm vwsll             : RISCVBinaryABX;
 
-  // Zvbc
+  // Zvbc / Zvbc32e
   defm vclmul            : RISCVBinaryAAX;
   defm vclmulh           : RISCVBinaryAAX;
 
   // Zvkg
   def int_riscv_vghsh    : RISCVBinaryAAXUnMaskedZvk;
   def int_riscv_vgmul_vv : RISCVUnaryAAUnMaskedZvk<IsVS=0>;
+
+  // Zvkgs
+  def int_riscv_vghsh_vs : RISCVBinaryAAXUnMaskedZvk<IsVS=1>;
+  def int_riscv_vgmul_vs : RISCVUnaryAAUnMaskedZvk<IsVS=1>;
 
   // Zvkned
   defm vaesdf            : RISCVUnaryAAUnMaskedZvk;

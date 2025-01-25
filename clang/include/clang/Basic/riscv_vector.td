@@ -2561,6 +2561,12 @@ let UnMaskedPolicyScheme = HasPassthruOperand in {
     defm vclmul  : RVVInt64BinBuiltinSet;
     defm vclmulh : RVVInt64BinBuiltinSet;
   }
+
+  // zvbc32e
+  let RequiredFeatures = ["Zvbc32e", "Experimental"] in {
+    defm vclmul  : RVVInt64BinBuiltinSet;
+    defm vclmulh : RVVInt64BinBuiltinSet;
+  }
 }
 
 let UnMaskedPolicyScheme = HasPolicyOperand, HasMasked = false in {
