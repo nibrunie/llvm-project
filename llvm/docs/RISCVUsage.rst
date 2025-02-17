@@ -149,7 +149,6 @@ on support follow.
      ``Zmmul``        Supported
      ``Zvbb``         Assembly Support
      ``Zvbc``         Assembly Support
-     ``Zvbc32e``      Assembly Support
      ``Zve32x``       (`Partially <#riscv-vlen-32-note>`__) Supported
      ``Zve32f``       (`Partially <#riscv-vlen-32-note>`__) Supported
      ``Zve64x``       Supported
@@ -158,7 +157,6 @@ on support follow.
      ``Zvfh``         Supported
      ``Zvkb``         Assembly Support
      ``Zvkg``         Assembly Support
-     ``Zvkgs``        Assembly Support
      ``Zvkn``         Assembly Support
      ``Zvknc``        Assembly Support
      ``Zvkned``       Assembly Support
