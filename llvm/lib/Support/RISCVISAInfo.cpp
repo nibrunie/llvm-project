@@ -150,6 +150,7 @@ static const RISCVSupportedExtension SupportedExtensions[] = {
 
     {"zvbb", {1, 0}},
     {"zvbc", {1, 0}},
+    {"zvbc32e", {1, 0}},
 
     {"zve32f", {1, 0}},
     {"zve32x", {1, 0}},
@@ -163,6 +164,7 @@ static const RISCVSupportedExtension SupportedExtensions[] = {
     // vector crypto
     {"zvkb", {1, 0}},
     {"zvkg", {1, 0}},
+    {"zvkgs", {1, 0}},
     {"zvkn", {1, 0}},
     {"zvknc", {1, 0}},
     {"zvkned", {1, 0}},
