@@ -311,6 +311,16 @@ let TargetPrefix = "riscv" in {
     let VLOperand = 2;
   }
 
+  // For destination vector type is the same as the source vector type
+  // Input: (passthru, vector_in, vector_in/scalar_in, vl, policy)
+  class RISCVBinaryAASUnMaskedZvk
+        : DefaultAttrsIntrinsic<[llvm_anyvector_ty],
+                    [LLVMMatchType<0>, LLVMMatchType<0>, llvm_anyvector_ty,
+                     llvm_anyint_ty, LLVMMatchType<2>],
+                    [ImmArg<ArgIndex<4>>, IntrNoMem]>, RISCVVIntrinsic {
+    let VLOperand = 3;
+  }
+
   multiclass RISCVUnaryAAUnMaskedZvk<bit HasVV = 1, bit HasVS = 1> {
     if HasVV then
       def "int_riscv_" # NAME # "_vv" : RISCVUnaryAAUnMaskedZvk<IsVS=0>;
@@ -1853,7 +1863,7 @@ let TargetPrefix = "riscv" in {
   defm vcpopv            : RISCVUnaryAA;
   defm vwsll             : RISCVBinaryABX;
 
-  // Zvbc
+  // Zvbc / Zvbc32e
   defm vclmul            : RISCVBinaryAAX;
   defm vclmulh           : RISCVBinaryAAX;
 
