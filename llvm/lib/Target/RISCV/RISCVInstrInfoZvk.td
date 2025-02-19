@@ -136,6 +136,11 @@ let Predicates = [HasStdExtZvkg], RVVConstraint = NoConstraint in {
   def VGMUL_VV : PALUVs2NoVm<0b101000, 0b10001, OPMVV, "vgmul.vv">;
 } // Predicates = [HasStdExtZvkg]
 
+let Predicates = [HasStdExtZvkgs], RVVConstraint = NoConstraint in {
+  def VGHSH_VS : PALUVVNoVm<0b101111, OPMVV, "vghsh.vs">;
+  def VGMUL_VS : PALUVs2NoVm<0b111101, 0b10011, OPMVV, "vgmul.vs">;
+} // Predicates = [HasStdExtZvkgs]
+
 let Predicates = [HasStdExtZvknhaOrZvknhb], RVVConstraint = NoConstraint in {
   def VSHA2CH_VV : PALUVVNoVm<0b101110, OPMVV, "vsha2ch.vv">;
   def VSHA2CL_VV : PALUVVNoVm<0b101111, OPMVV, "vsha2cl.vv">;
@@ -362,7 +367,7 @@ let Predicates = [HasStdExtZvbb] in {
   defm PseudoVWSLL : VPseudoVWALU_VV_VX_VI<uimm5>;
 } // Predicates = [HasStdExtZvbb]
 
-let Predicates = [HasStdExtZvbc] in {
+let Predicates = [HasStdExtZvbcOrZvbc32e] in {
   defm PseudoVCLMUL  : VPseudoVCLMUL_VV_VX;
   defm PseudoVCLMULH : VPseudoVCLMUL_VV_VX;
 } // Predicates = [HasStdExtZvbc]
@@ -878,6 +883,11 @@ let Predicates = [HasStdExtZvbc] in {
   defm : VPatBinaryV_VV_VX<"int_riscv_vclmul", "PseudoVCLMUL", I64IntegerVectors>;
   defm : VPatBinaryV_VV_VX<"int_riscv_vclmulh", "PseudoVCLMULH", I64IntegerVectors>;
 } // Predicates = [HasStdExtZvbc]
+
+let Predicates = [HasStdExtZvbc32e] in {
+  defm : VPatBinaryV_VV_VX<"int_riscv_vclmul", "PseudoVCLMUL", IntegerVectorsExceptI64>;
+  defm : VPatBinaryV_VV_VX<"int_riscv_vclmulh", "PseudoVCLMUL", IntegerVectorsExceptI64>;
+} // Predicates = [HasStdExtZvbc32e]
 
 let Predicates = [HasStdExtZvkb] in {
   defm : VPatBinaryV_VV_VX<"int_riscv_vandn", "PseudoVANDN", AllIntegerVectors>;

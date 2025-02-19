@@ -623,12 +623,32 @@ def HasStdExtZvbc : Predicate<"Subtarget->hasStdExtZvbc()">,
                     AssemblerPredicate<(all_of FeatureStdExtZvbc),
                         "'Zvbc' (Vector Carryless Multiplication)">;
 
+def FeatureStdExtZvbc32e
+    : SubtargetFeature<"zvbc32e", "HasStdExtZvbc32e", "true",
+                       "'Zvbc32e' (Vector Carryless Multiplication for SEW <= 32)">;
+def HasStdExtZvbc32e : Predicate<"Subtarget->hasStdExtZvbc32e()">,
+                    AssemblerPredicate<(all_of FeatureStdExtZvbc32e),
+                        "'Zvbc32e' (Vector Carryless Multiplication for SEW <= 32)">;
+
+def HasStdExtZvbcOrZvbc32e
+    : Predicate<"Subtarget->hasStdExtZvbc() || Subtarget->hasStdExtZvbc32e()">,
+      AssemblerPredicate<(any_of FeatureStdExtZvbc, FeatureStdExtZvbc32e),
+                         "'Zvbc' (Vector Carryless Multiplication) or "
+                         "'Zvbc32e' (Vector Carryless Multiplication for SEW <= 32)">;
+
 def FeatureStdExtZvkg
     : SubtargetFeature<"zvkg", "HasStdExtZvkg", "true",
                        "'Zvkg' (Vector GCM instructions for Cryptography)">;
 def HasStdExtZvkg : Predicate<"Subtarget->hasStdExtZvkg()">,
                     AssemblerPredicate<(all_of FeatureStdExtZvkg),
                         "'Zvkg' (Vector GCM instructions for Cryptography)">;
+
+def FeatureStdExtZvkgs
+    : SubtargetFeature<"zvkgs", "HasStdExtZvkgs", "true",
+                       "'Zvkgs' (Vector-Scalar GCM instructions for Cryptography)">;
+def HasStdExtZvkgs : Predicate<"Subtarget->hasStdExtZvkgs()">,
+                    AssemblerPredicate<(all_of FeatureStdExtZvkgs),
+                        "'Zvkg' (Vector-Scalar GCM instructions for Cryptography)">;
 
 def FeatureStdExtZvkned
     : SubtargetFeature<"zvkned", "HasStdExtZvkned", "true",
