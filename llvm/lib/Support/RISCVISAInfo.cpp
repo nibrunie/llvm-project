@@ -971,12 +971,22 @@ Error RISCVISAInfo::checkDependency() {
         errc::invalid_argument,
         "'zvbc' requires 'v' or 'zve64*' extension to also be specified");
 
+  if (Exts.count("zvbc32e") && !Exts.count("zve32x"))
+    return createStringError(
+        errc::invalid_argument,
+        "'zvbc32e' requires 'v' or 'zve32*' extension to also be specified");
+
   if ((Exts.count("zvkg") || Exts.count("zvkned") || Exts.count("zvknha") ||
        Exts.count("zvksed") || Exts.count("zvksh")) &&
       !HasVector)
     return createStringError(
         errc::invalid_argument,
         "'zvk*' requires 'v' or 'zve*' extension to also be specified");
+
+  if (Exts.count("zvkgs") && !Exts.count("zvkg"))
+    return createStringError(
+        errc::invalid_argument,
+        "'zvkgs' requires 'zvkg' extension to also be specified");
 
   if (Exts.count("zvknhb") && !Exts.count("zve64x"))
     return createStringError(
