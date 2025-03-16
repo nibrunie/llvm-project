@@ -886,7 +886,7 @@ let Predicates = [HasStdExtZvbc] in {
 
 let Predicates = [HasStdExtZvbc32e] in {
   defm : VPatBinaryV_VV_VX<"int_riscv_vclmul", "PseudoVCLMUL", IntegerVectorsExceptI64>;
-  defm : VPatBinaryV_VV_VX<"int_riscv_vclmulh", "PseudoVCLMUL", IntegerVectorsExceptI64>;
+  defm : VPatBinaryV_VV_VX<"int_riscv_vclmulh", "PseudoVCLMULH", IntegerVectorsExceptI64>;
 } // Predicates = [HasStdExtZvbc32e]
 
 let Predicates = [HasStdExtZvkb] in {
