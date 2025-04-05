@@ -648,7 +648,7 @@ def FeatureStdExtZvkgs
                        "'Zvkgs' (Vector-Scalar GCM instructions for Cryptography)">;
 def HasStdExtZvkgs : Predicate<"Subtarget->hasStdExtZvkgs()">,
                     AssemblerPredicate<(all_of FeatureStdExtZvkgs),
-                        "'Zvkg' (Vector-Scalar GCM instructions for Cryptography)">;
+                        "'Zvkgs' (Vector-Scalar GCM instructions for Cryptography)">;
 
 def FeatureStdExtZvkned
     : SubtargetFeature<"zvkned", "HasStdExtZvkned", "true",
